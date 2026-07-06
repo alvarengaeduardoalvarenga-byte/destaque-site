@@ -96,3 +96,11 @@ section { padding-block: var(--s-6); }
 .feature:hover::before { transform: scaleX(1); }
 .feature h3 { font-size: 1.2rem; margin: 0 0 .5rem; }
 .feature p { color: var(--muted); margin: 0; }
+.enem { background: var(--navy); color: #fff; border-radius: var(--radius); margin-inline: auto;
+  width: min(100% - 2.5rem, var(--maxw)); }
+.enem h2 { color: #fff; }
+.lead-light { color: rgba(255,255,255,.8); }
+.enem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); margin-top: var(--s-4); }
+.enem-item h3 { color: #fff; font-size: 1.1rem; padding-top: var(--s-2); border-top: 2px solid rgba(255,255,255,.25); }
+.enem-item p { color: rgba(255,255,255,.75); }
+@media (max-width: 860px) { .enem-grid { grid-template-columns: 1fr 1fr; } }
