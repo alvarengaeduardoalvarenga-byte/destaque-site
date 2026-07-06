@@ -13,3 +13,4 @@ Abrir http://localhost:8092
 - Número de WhatsApp de destino (buscar `WHATSAPP_NUMBER` em js/whatsapp.js)
 - Links dos vídeos de depoimento (buscar `VIDEO_PLACEHOLDER` em index.html)
 - Logos oficiais em assets/logos/
+- URL do Portal do Aluno (buscar 'Portal do Aluno' em index.html; restaurar target="_blank" ao inserir a URL real)

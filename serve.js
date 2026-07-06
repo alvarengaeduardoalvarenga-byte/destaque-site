@@ -17,7 +17,9 @@ const types = {
 };
 
 http.createServer((req, res) => {
-  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  let urlPath;
+  try { urlPath = decodeURIComponent(req.url.split('?')[0]); }
+  catch { res.writeHead(400); return res.end('Bad request'); }
   if (urlPath === '/') urlPath = '/index.html';
   const filePath = path.join(root, urlPath);
   if (!filePath.startsWith(root)) { res.writeHead(403); return res.end('Forbidden'); }
