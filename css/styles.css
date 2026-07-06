@@ -75,3 +75,14 @@ section { padding-block: var(--s-6); }
 .hero-content p { font-size: 1.2rem; opacity: .95; margin-bottom: 2rem; }
 .hero-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35);
   color: #fff; padding: .5rem 1rem; border-radius: 999px; font-size: .85rem; font-weight: 600; backdrop-filter: blur(6px); }
+.section-head { max-width: 720px; margin-bottom: var(--s-5); }
+.section-head h2 { font-size: var(--h2); margin: .5rem 0; }
+.lead { font-size: 1.2rem; color: var(--muted); }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+.pillar { background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: var(--s-4); transition: transform .25s ease, box-shadow .25s ease; }
+.pillar:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(13,27,76,.08); }
+.pillar-ic { font-size: 2rem; margin-bottom: var(--s-2); }
+.pillar h3 { font-size: var(--h3); margin: 0 0 .5rem; }
+.pillar p { color: var(--muted); margin: 0; }
+@media (max-width: 860px) { .pillars { grid-template-columns: 1fr; } }
