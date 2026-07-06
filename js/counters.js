@@ -7,6 +7,7 @@ export function initCounters(root = document) {
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const run = (el) => {
     const target = Number(el.dataset.count);
+    if (!Number.isFinite(target)) return;
     const suffix = el.dataset.suffix || '';
     if (reduce) { el.textContent = formatCount(target, suffix); return; }
     const dur = 1400; const start = performance.now();
