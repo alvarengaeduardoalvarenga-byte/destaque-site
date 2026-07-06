@@ -52,6 +52,13 @@ section { padding-block: var(--s-6); }
 .btn-primary { background: var(--orange); color: #fff; }
 .btn-outline { border-color: var(--navy); color: var(--navy); background: transparent; }
 .nav-toggle { display: none; font-size: 1.5rem; background: none; border: 0; color: var(--navy); }
+/* Header sobre o hero (não condensado): texto claro */
+.site-header:not(.condensed) { --header-ink: #fff; }
+.site-header.condensed { --header-ink: var(--navy); }
+.site-header .main-nav a { color: var(--header-ink, var(--navy)); }
+.site-header .btn-outline { border-color: var(--header-ink, var(--navy)); color: var(--header-ink, var(--navy)); }
+.site-header .nav-toggle { color: var(--header-ink, var(--navy)); }
+.main-nav.open a { color: var(--navy); }
 @media (max-width: 860px) {
   .main-nav, .header-inner > .btn-outline { display: none; }
   .nav-toggle { display: block; margin-left: auto; }
