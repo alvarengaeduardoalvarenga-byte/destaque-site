@@ -104,3 +104,12 @@ section { padding-block: var(--s-6); }
 .enem-item h3 { color: #fff; font-size: 1.1rem; padding-top: var(--s-2); border-top: 2px solid rgba(255,255,255,.25); }
 .enem-item p { color: rgba(255,255,255,.75); }
 @media (max-width: 860px) { .enem-grid { grid-template-columns: 1fr 1fr; } }
+.results { background: #fff; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
+.stat { text-align: center; padding: var(--s-4) var(--s-2); background: #fff;
+  border: 1px solid var(--line); border-radius: var(--radius); }
+.stat-num { display: block; font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--green); font-weight: 600; line-height: 1; }
+.stat-label { display: block; margin-top: var(--s-2); color: var(--muted); font-size: .95rem; }
+.results-src { color: var(--muted); font-size: .8rem; margin-top: var(--s-3); }
+@media (max-width: 860px) { .stats { grid-template-columns: 1fr 1fr; } }
