@@ -133,3 +133,11 @@ section { padding-block: var(--s-6); }
 .video-card .play { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; display: grid; place-items: center;
   background: rgba(240,128,90,.95); color: #fff; border-radius: 50%; font-size: 1.4rem; }
 @media (max-width: 860px) { .video-grid { grid-template-columns: 1fr; } }
+.enroll-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); align-items: center; }
+#enroll-form { display: grid; gap: var(--s-2); background: #fff; padding: var(--s-4);
+  border: 1px solid var(--line); border-radius: var(--radius); }
+#enroll-form label { display: grid; gap: .35rem; font-weight: 600; color: var(--navy); font-size: .95rem; }
+#enroll-form input, #enroll-form select { padding: .8rem 1rem; border: 1px solid var(--line);
+  border-radius: 12px; font: inherit; background: var(--bg); }
+#enroll-form input:focus, #enroll-form select:focus { outline: 2px solid var(--green); border-color: var(--green); }
+@media (max-width: 860px) { .enroll-grid { grid-template-columns: 1fr; } }
