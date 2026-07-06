@@ -1,6 +1,9 @@
-import { initHeaderCondense, initVideoCards } from './effects.js';
+import { initHeaderCondense, initVideoCards, initSmoothScroll, initReveals, initParallax } from './effects.js';
 import { initCounters } from './counters.js';
 import { initEnrollForm } from './whatsapp.js';
+initSmoothScroll();
+initReveals();
+initParallax();
 initHeaderCondense();
 initVideoCards();
 initCounters();

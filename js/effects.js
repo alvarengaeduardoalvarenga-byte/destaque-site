@@ -26,3 +26,32 @@ export function initVideoCards() {
     });
   });
 }
+
+export function initSmoothScroll() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.Lenis) return;
+  const lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
+  const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+}
+
+export function initReveals() {
+  const els = document.querySelectorAll('.reveal');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(el => el.classList.add('is-visible')); return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  els.forEach(el => io.observe(el));
+}
+
+export function initParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els = [...document.querySelectorAll('[data-parallax]')];
+  const onScroll = () => els.forEach(el => {
+    const speed = 0.25;
+    el.style.transform = `translateY(${window.scrollY * speed}px)`;
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
