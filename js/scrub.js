@@ -33,7 +33,9 @@ export function initScrub() {
     const cw = canvas.width, ch = canvas.height;
     const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const w = im.naturalWidth * s, h = im.naturalHeight * s;
-    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+    const ox = (cw - w) / 2;
+    const oy = h > ch ? 0 : (ch - h) / 2;
+    ctx.drawImage(im, ox, oy, w, h);
     return true;
   };
 

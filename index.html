@@ -224,17 +224,9 @@
           <form id="enroll-form">
             <span class="eyebrow">Matrícula 2027</span>
             <h2 class="scrub-form-title">Agende uma visita</h2>
-            <p class="scrub-form-sub">Preencha e continue a conversa direto no WhatsApp com nossa equipe.</p>
-            <label>Nome do responsável<input name="nome" required></label>
-            <label>Telefone<input name="telefone" required inputmode="tel"></label>
-            <label>Série / segmento de interesse
-              <select name="serie" required>
-                <option value="">Selecione…</option>
-                <option>Educação Infantil</option><option>Ensino Fundamental I</option>
-                <option>Ensino Fundamental II</option><option>Ensino Médio</option>
-              </select>
-            </label>
-            <button class="btn btn-primary" type="submit">Falar no WhatsApp</button>
+            <label>Seu nome<input name="nome" required autocomplete="name"></label>
+            <label>Seu telefone<input name="telefone" required inputmode="tel" autocomplete="tel"></label>
+            <button class="btn btn-primary" type="submit">Enviar</button>
           </form>
         </div>
       </div>
