@@ -214,3 +214,7 @@ section { padding-block: var(--s-6); }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track, .hero-bg-img, .wa-float { animation: none; }
 }
+
+/* Aurora de fundo (WebGL) — atrás de tudo, inclusive da foto do hero (z -2),
+   para o efeito aparecer só onde o fundo era branco (seção 2 em diante) */
+.aurora-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; pointer-events: none; }

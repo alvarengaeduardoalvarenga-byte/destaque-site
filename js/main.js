@@ -1,6 +1,8 @@
 import { initHeaderCondense, initVideoCards, initSmoothScroll, initReveals, initParallax, initScrollProgress } from './effects.js';
 import { initCounters } from './counters.js';
 import { initEnrollForm } from './whatsapp.js';
+import { initAurora } from './aurora.js';
+initAurora();
 initSmoothScroll();
 initReveals();
 initParallax();
