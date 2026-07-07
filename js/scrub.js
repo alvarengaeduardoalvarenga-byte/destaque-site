@@ -34,7 +34,8 @@ export function initScrub() {
     const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const w = im.naturalWidth * s, h = im.naturalHeight * s;
     const ox = (cw - w) / 2;
-    const oy = h > ch ? 0 : (ch - h) / 2;
+    // corte vertical enviesado: preserva o texto no céu (15% do excesso sai do topo, o resto do chão)
+    const oy = h > ch ? (ch - h) * 0.15 : (ch - h) / 2;
     ctx.drawImage(im, ox, oy, w, h);
     return true;
   };
