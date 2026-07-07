@@ -218,3 +218,16 @@ section { padding-block: var(--s-6); }
 /* Aurora de fundo (WebGL) — atrás de tudo, inclusive da foto do hero (z -2),
    para o efeito aparecer só onde o fundo era branco (seção 2 em diante) */
 .aurora-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -3; pointer-events: none; }
+
+/* Tema noturno — só quando o canvas aurora está ativo */
+body.has-aurora { background: #070D26; }
+body.has-aurora .section-head h2,
+body.has-aurora .letter-body h2,
+body.has-aurora .enroll-copy h2 { color: #fff; }
+body.has-aurora .lead { color: rgba(255,255,255,.78); }
+body.has-aurora .letter-body p { color: rgba(255,255,255,.85); }
+body.has-aurora .signature { color: #fff; }
+body.has-aurora .results-src { color: rgba(255,255,255,.6); }
+body.has-aurora .marquee { border-block: 1px solid rgba(255,255,255,.14); }
+body.has-aurora .enem { border: 1px solid rgba(255,255,255,.16); }
+body.has-aurora .site-footer { border-top: 1px solid rgba(255,255,255,.12); }

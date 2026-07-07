@@ -1,4 +1,5 @@
-// Fundo aurora — gradiente fluido verde/azul/lilás sobre o off-white.
+// Fundo aurora noturno — céu profundo com estrelas cintilantes e um brilho de aurora
+// subindo do rodapé cuja cor muda com o scroll (teal → azul → lilás).
 // Adaptado de um shader React/WebGL para vanilla; roda em canvas fixo atrás do conteúdo.
 const VERT = `
 attribute vec2 aPosition;
@@ -10,6 +11,7 @@ precision highp float;
 uniform vec2 iResolution;
 uniform float iTime;
 uniform vec2 iMouse;
+uniform float uScroll;
 
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
 float noise(vec2 p){
@@ -26,20 +28,28 @@ float fbm(vec2 p){
 
 void main(){
   vec2 uv = gl_FragCoord.xy / iResolution.xy;
-  vec2 m = (iMouse / iResolution - 0.5) * 0.25;
-  vec2 p = uv * 1.6 + m;
-  p.x *= iResolution.x / iResolution.y;
-  float t = iTime * 0.10;
-  float n1 = fbm(p + vec2(t, -t * 0.7));
-  float n2 = fbm(p * 1.4 - vec2(t * 0.8, t * 0.5) + n1);
-  vec3 green = vec3(0.52, 0.84, 0.62);
-  vec3 blue  = vec3(0.45, 0.66, 0.95);
-  vec3 lilac = vec3(0.70, 0.58, 0.94);
-  float osc = sin(iTime * 0.22 + n1 * 3.0) * 0.5 + 0.5;
-  vec3 aurora = mix(mix(green, blue, smoothstep(0.2, 0.8, n2)), lilac, osc * smoothstep(0.25, 0.85, n1));
-  vec3 base = vec3(0.984, 0.984, 0.976); /* #FBFBF9 */
-  float strength = smoothstep(0.18, 0.78, n2) * 0.85;
-  vec3 col = mix(base, aurora, strength);
+
+  /* céu profundo: quase preto no topo do viewport, marinho na base */
+  vec3 skyTop = vec3(0.016, 0.031, 0.10);
+  vec3 skyBot = vec3(0.051, 0.106, 0.30);
+  vec3 col = mix(skyTop, skyBot, pow(1.0 - uv.y, 1.5));
+
+  /* estrelas com cintilação sutil */
+  vec2 sp = gl_FragCoord.xy / 3.0;
+  float s = hash(floor(sp));
+  float star = step(0.9975, s) * (0.55 + 0.45 * sin(iTime * 1.5 + s * 200.0));
+  col += vec3(star) * 0.85;
+
+  /* aurora subindo do rodapé; cor muda com o scroll (teal → azul → lilás) */
+  vec2 m = (iMouse / iResolution - 0.5) * 0.2;
+  float n = fbm(vec2(uv.x * 2.0 + m.x + iTime * 0.05, uv.y * 1.2 + m.y - iTime * 0.03));
+  float glow = pow(1.0 - uv.y, 2.0) * (0.65 + 0.6 * n);
+  vec3 teal  = vec3(0.10, 0.78, 0.62);
+  vec3 blue  = vec3(0.22, 0.47, 0.95);
+  vec3 lilac = vec3(0.64, 0.47, 0.96);
+  vec3 glowColor = uScroll < 0.5 ? mix(teal, blue, uScroll * 2.0) : mix(blue, lilac, (uScroll - 0.5) * 2.0);
+  col += glowColor * glow * 0.85;
+
   gl_FragColor = vec4(col, 1.0);
 }
 `;
@@ -78,6 +88,9 @@ export function initAurora() {
   const uRes = gl.getUniformLocation(prog, 'iResolution');
   const uTime = gl.getUniformLocation(prog, 'iTime');
   const uMouse = gl.getUniformLocation(prog, 'iMouse');
+  const uScrollLoc = gl.getUniformLocation(prog, 'uScroll');
+
+  document.body.classList.add('has-aurora');
 
   const mouse = { x: 0.5, y: 0.5 };
   const onMove = (e) => {
@@ -85,6 +98,13 @@ export function initAurora() {
     mouse.y = 1 - e.clientY / window.innerHeight;
   };
   window.addEventListener('mousemove', onMove, { passive: true });
+
+  let scrollTarget = 0, scrollSmooth = 0;
+  const onScroll = () => {
+    scrollTarget = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   const resize = () => {
     // meia resolução: gradientes escalam sem perda visível e a GPU agradece
@@ -99,8 +119,10 @@ export function initAurora() {
   const t0 = performance.now();
   const frame = () => {
     if (gl.isContextLost()) return;
+    scrollSmooth += (scrollTarget - scrollSmooth) * 0.06;
     gl.uniform1f(uTime, (performance.now() - t0) / 1000);
     gl.uniform2f(uMouse, mouse.x * canvas.width, mouse.y * canvas.height);
+    gl.uniform1f(uScrollLoc, scrollSmooth);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     requestAnimationFrame(frame);
   };
