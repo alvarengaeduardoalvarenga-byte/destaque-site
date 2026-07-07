@@ -34,11 +34,22 @@ void main(){
   vec3 skyBot = vec3(0.051, 0.106, 0.30);
   vec3 col = mix(skyTop, skyBot, pow(1.0 - uv.y, 1.5));
 
-  /* estrelas com cintilação sutil */
-  vec2 sp = gl_FragCoord.xy / 3.0;
-  float s = hash(floor(sp));
-  float star = step(0.9975, s) * (0.55 + 0.45 * sin(iTime * 1.5 + s * 200.0));
-  col += vec3(star) * 0.85;
+  /* estrelas: pontos redondos e suaves; posição, tamanho, ritmo e fase
+     independentes por estrela (hashes distintos por célula) */
+  vec2 grid = gl_FragCoord.xy / 9.0;
+  vec2 cell = floor(grid);
+  vec2 f = fract(grid);
+  float h = hash(cell);
+  if (h > 0.72) {
+    vec2 starPos = 0.2 + 0.6 * vec2(hash(cell + 1.7), hash(cell + 4.3));
+    float d = length(f - starPos);
+    float size = 0.05 + 0.09 * hash(cell + 9.1);
+    float speed = 0.6 + 1.8 * hash(cell + 3.3);
+    float phase = hash(cell + 5.5) * 6.2831;
+    float tw = 0.25 + 0.75 * (0.5 + 0.5 * sin(iTime * speed + phase));
+    float star = smoothstep(size, 0.0, d) * tw;
+    col += vec3(star) * 0.6;
+  }
 
   /* aurora subindo do rodapé; cor muda com o scroll (teal → azul → lilás) */
   vec2 m = (iMouse / iResolution - 0.5) * 0.2;
