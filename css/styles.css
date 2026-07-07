@@ -160,3 +160,22 @@ section { padding-block: var(--s-6); }
 .brand img { display: block; }
 .site-header:not(.condensed) .brand-dark { display: none; }
 .site-header.condensed .brand-light { display: none; }
+
+/* Segmentos */
+.seg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
+.seg-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform .3s ease, box-shadow .3s ease; }
+.seg-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(13,27,76,.12); }
+.seg-photo { margin: 0; aspect-ratio: 3/4; overflow: hidden; position: relative; }
+.seg-photo::after { content: ''; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--seg); }
+.seg-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.seg-card:hover .seg-photo img { transform: scale(1.06); }
+.seg-body { padding: var(--s-3); }
+.seg-age { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--seg); background: color-mix(in srgb, var(--seg) 10%, white);
+  padding: .25rem .7rem; border-radius: 999px; margin-bottom: .6rem; }
+.seg-body h3 { font-size: 1.25rem; margin: 0 0 .4rem; }
+.seg-body p { color: var(--muted); margin: 0; font-size: .95rem; }
+@media (max-width: 1024px) { .seg-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .seg-grid { grid-template-columns: 1fr; } }
