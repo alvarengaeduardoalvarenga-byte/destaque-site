@@ -64,7 +64,17 @@ export function initReveals() {
     if (i > 0) el.style.transitionDelay = Math.min(i * 90, 360) + 'ms';
   });
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+        if (e.target.style.transitionDelay) {
+          const clear = () => { e.target.style.transitionDelay = ''; };
+          e.target.addEventListener('transitionend', clear, { once: true });
+          setTimeout(clear, 1400);
+        }
+      }
+    });
   }, { threshold: .15 });
   els.forEach(el => io.observe(el));
 }
