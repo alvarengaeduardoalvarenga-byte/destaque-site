@@ -27,18 +27,18 @@ float fbm(vec2 p){
 void main(){
   vec2 uv = gl_FragCoord.xy / iResolution.xy;
   vec2 m = (iMouse / iResolution - 0.5) * 0.25;
-  vec2 p = uv * 2.2 + m;
+  vec2 p = uv * 1.6 + m;
   p.x *= iResolution.x / iResolution.y;
-  float t = iTime * 0.06;
+  float t = iTime * 0.10;
   float n1 = fbm(p + vec2(t, -t * 0.7));
   float n2 = fbm(p * 1.4 - vec2(t * 0.8, t * 0.5) + n1);
-  vec3 green = vec3(0.72, 0.90, 0.78);
-  vec3 blue  = vec3(0.70, 0.82, 0.95);
-  vec3 lilac = vec3(0.83, 0.78, 0.95);
-  float osc = sin(iTime * 0.12 + n1 * 3.0) * 0.5 + 0.5;
-  vec3 aurora = mix(mix(green, blue, smoothstep(0.2, 0.8, n2)), lilac, osc * smoothstep(0.3, 0.9, n1));
+  vec3 green = vec3(0.52, 0.84, 0.62);
+  vec3 blue  = vec3(0.45, 0.66, 0.95);
+  vec3 lilac = vec3(0.70, 0.58, 0.94);
+  float osc = sin(iTime * 0.22 + n1 * 3.0) * 0.5 + 0.5;
+  vec3 aurora = mix(mix(green, blue, smoothstep(0.2, 0.8, n2)), lilac, osc * smoothstep(0.25, 0.85, n1));
   vec3 base = vec3(0.984, 0.984, 0.976); /* #FBFBF9 */
-  float strength = smoothstep(0.35, 0.9, n2) * 0.55;
+  float strength = smoothstep(0.18, 0.78, n2) * 0.85;
   vec3 col = mix(base, aurora, strength);
   gl_FragColor = vec4(col, 1.0);
 }
