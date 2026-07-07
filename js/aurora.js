@@ -44,11 +44,11 @@ void main(){
     vec2 starPos = 0.2 + 0.6 * vec2(hash(cell + 1.7), hash(cell + 4.3));
     float d = length(f - starPos);
     float size = 0.05 + 0.09 * hash(cell + 9.1);
-    float speed = 0.6 + 1.8 * hash(cell + 3.3);
+    float speed = 1.5 + 3.5 * hash(cell + 3.3);
     float phase = hash(cell + 5.5) * 6.2831;
     float tw = 0.25 + 0.75 * (0.5 + 0.5 * sin(iTime * speed + phase));
     float star = smoothstep(size, 0.0, d) * tw;
-    col += vec3(star) * 0.9;
+    col += vec3(star) * 1.4;
   }
 
   /* aurora subindo do rodapé; cor muda com o scroll (teal → azul → lilás) */

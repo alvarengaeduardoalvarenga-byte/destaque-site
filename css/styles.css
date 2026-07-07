@@ -121,7 +121,6 @@ section { padding-block: var(--s-6); }
 .enem-item h3 { color: #fff; font-size: 1.1rem; padding-top: var(--s-2); border-top: 2px solid rgba(255,255,255,.25); }
 .enem-item p { color: rgba(255,255,255,.75); }
 @media (max-width: 860px) { .enem-grid { grid-template-columns: 1fr 1fr; } }
-.results { background: #fff; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
 .stat { text-align: center; padding: var(--s-4) var(--s-2); background: #fff;
   border: 1px solid var(--line); border-top: 3px solid var(--green); border-radius: var(--radius); }
