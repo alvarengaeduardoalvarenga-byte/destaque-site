@@ -32,6 +32,25 @@ export function initSmoothScroll() {
   const lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
   const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
   requestAnimationFrame(raf);
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length <= 1) return;
+      const el = document.querySelector(href);
+      if (!el) return;
+      e.preventDefault();
+      // #top targets the fixed header itself, whose getBoundingClientRect().top
+      // is always ~0 regardless of scroll position — scroll to the document
+      // origin directly instead of asking Lenis to resolve its (unreliable) offset.
+      if (href === '#top') {
+        lenis.scrollTo(0);
+      } else {
+        lenis.scrollTo(el, { offset: -84 });
+      }
+      history.pushState(null, '', href);
+    });
+  });
 }
 
 export function initReveals() {
