@@ -58,6 +58,11 @@ export function initReveals() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     els.forEach(el => el.classList.add('is-visible')); return;
   }
+  els.forEach(el => {
+    const sibs = el.parentElement ? [...el.parentElement.children].filter(c => c.classList.contains('reveal')) : [];
+    const i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 90, 360) + 'ms';
+  });
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
   }, { threshold: .15 });
@@ -71,6 +76,17 @@ export function initParallax() {
     const speed = 0.25;
     el.style.transform = `translateY(${window.scrollY * speed}px)`;
   });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+export function initScrollProgress() {
+  const bar = document.querySelector('.progress');
+  if (!bar) return;
+  const onScroll = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 }
