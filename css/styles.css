@@ -155,3 +155,8 @@ section { padding-block: var(--s-6); }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--s-1); padding-right: 0; }
 }
+
+/* Logo oficial: branca sobre o hero, colorida no header condensado */
+.brand img { display: block; }
+.site-header:not(.condensed) .brand-dark { display: none; }
+.site-header.condensed .brand-light { display: none; }
