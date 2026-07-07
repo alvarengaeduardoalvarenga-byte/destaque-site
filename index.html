@@ -214,25 +214,29 @@
         </button>
       </div>
     </section>
-    <section class="enroll" id="form">
-      <div class="container enroll-grid">
-        <div class="enroll-copy reveal">
-          <span class="eyebrow">Matrículas 2026</span>
-          <h2>Agende sua visita.</h2>
-          <p class="lead">Preencha e continue a conversa direto no WhatsApp com nossa equipe.</p>
+    <section class="enroll scrub-section" id="form">
+      <div class="scrub-sticky">
+        <canvas class="scrub-canvas" aria-hidden="true"></canvas>
+        <img class="scrub-poster" src="assets/frames/matricula/frame_0160.jpg"
+             alt="Fachada do Colégio Destaque ao amanhecer com a frase 'O ponto de partida para grandes sonhos' no céu" loading="lazy">
+        <div class="scrub-hint" aria-hidden="true">Role para viver o amanhecer ↓</div>
+        <div class="scrub-form">
+          <form id="enroll-form">
+            <span class="eyebrow">Matrícula 2027</span>
+            <h2 class="scrub-form-title">Agende uma visita</h2>
+            <p class="scrub-form-sub">Preencha e continue a conversa direto no WhatsApp com nossa equipe.</p>
+            <label>Nome do responsável<input name="nome" required></label>
+            <label>Telefone<input name="telefone" required inputmode="tel"></label>
+            <label>Série / segmento de interesse
+              <select name="serie" required>
+                <option value="">Selecione…</option>
+                <option>Educação Infantil</option><option>Ensino Fundamental I</option>
+                <option>Ensino Fundamental II</option><option>Ensino Médio</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" type="submit">Falar no WhatsApp</button>
+          </form>
         </div>
-        <form id="enroll-form" class="reveal">
-          <label>Nome do responsável<input name="nome" required></label>
-          <label>Telefone<input name="telefone" required inputmode="tel"></label>
-          <label>Série / segmento de interesse
-            <select name="serie" required>
-              <option value="">Selecione…</option>
-              <option>Educação Infantil</option><option>Ensino Fundamental I</option>
-              <option>Ensino Fundamental II</option><option>Ensino Médio</option>
-            </select>
-          </label>
-          <button class="btn btn-primary" type="submit">Falar no WhatsApp</button>
-        </form>
       </div>
     </section>
   </main>

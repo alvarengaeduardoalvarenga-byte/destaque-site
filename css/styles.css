@@ -155,14 +155,12 @@ section { padding-block: var(--s-6); }
 .video-card .play { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; display: grid; place-items: center;
   background: rgba(240,128,90,.95); color: #fff; border-radius: 50%; font-size: 1.4rem; }
 @media (max-width: 860px) { .video-grid { grid-template-columns: 1fr; } }
-.enroll-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); align-items: center; }
 #enroll-form { display: grid; gap: var(--s-2); background: #fff; padding: var(--s-4);
   border: 1px solid var(--line); border-radius: var(--radius); }
 #enroll-form label { display: grid; gap: .35rem; font-weight: 600; color: var(--navy); font-size: .95rem; }
 #enroll-form input, #enroll-form select { padding: .8rem 1rem; border: 1px solid var(--line);
   border-radius: 12px; font: inherit; background: var(--bg); }
 #enroll-form input:focus, #enroll-form select:focus { outline: 2px solid var(--green); border-color: var(--green); }
-@media (max-width: 860px) { .enroll-grid { grid-template-columns: 1fr; } }
 .site-footer { background: var(--navy); color: rgba(255,255,255,.85); padding-top: var(--s-6); }
 .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr 1fr; gap: var(--s-4); }
 .site-footer h3 { color: #fff; font-size: 1.1rem; }
@@ -221,8 +219,7 @@ section { padding-block: var(--s-6); }
 /* Tema noturno — só quando o canvas aurora está ativo */
 body.has-aurora { background: #070D26; }
 body.has-aurora .section-head h2,
-body.has-aurora .letter-body h2,
-body.has-aurora .enroll-copy h2 { color: #fff; }
+body.has-aurora .letter-body h2 { color: #fff; }
 body.has-aurora .lead { color: rgba(255,255,255,.78); }
 body.has-aurora .letter-body p { color: rgba(255,255,255,.85); }
 body.has-aurora .signature { color: #fff; }
@@ -230,3 +227,27 @@ body.has-aurora .results-src { color: rgba(255,255,255,.6); }
 body.has-aurora .marquee { border-block: 1px solid rgba(255,255,255,.14); }
 body.has-aurora .enem { border: 1px solid rgba(255,255,255,.16); }
 body.has-aurora .site-footer { border-top: 1px solid rgba(255,255,255,.12); }
+
+/* Scrub de matrícula — cinema de scroll */
+.scrub-section { height: 420vh; padding-block: 0; position: relative; }
+.scrub-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; background: #0a1030; }
+.scrub-canvas, .scrub-poster { position: absolute; inset: 0; width: 100%; height: 100%; }
+.scrub-poster { object-fit: cover; }
+body.has-scrub .scrub-poster { display: none; }
+.scrub-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: #fff; font-weight: 600; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase;
+  background: rgba(13,27,76,.5); padding: .5rem 1.1rem; border-radius: 999px; backdrop-filter: blur(6px);
+  transition: opacity .5s ease; pointer-events: none; }
+.scrub-form { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--s-3); }
+body.has-scrub .scrub-form { opacity: 0; pointer-events: none; }
+.scrub-form form { width: min(100%, 460px); }
+.scrub-form #enroll-form { background: rgba(255,255,255,.94); backdrop-filter: blur(10px);
+  box-shadow: 0 30px 80px rgba(4,8,25,.45); }
+.scrub-form .eyebrow { margin-bottom: .1rem; }
+.scrub-form-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; }
+.scrub-form-sub { color: var(--muted); margin: 0 0 .5rem; font-size: .95rem; }
+@media (prefers-reduced-motion: reduce) {
+  .scrub-section { height: auto; }
+  .scrub-sticky { position: relative; height: 100vh; }
+  .scrub-canvas, .scrub-hint { display: none; }
+}

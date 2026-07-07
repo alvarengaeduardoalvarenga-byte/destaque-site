@@ -2,6 +2,7 @@ import { initHeaderCondense, initVideoCards, initSmoothScroll, initReveals, init
 import { initCounters } from './counters.js';
 import { initEnrollForm } from './whatsapp.js';
 import { initAurora } from './aurora.js';
+import { initScrub } from './scrub.js';
 initAurora();
 initSmoothScroll();
 initReveals();
@@ -11,3 +12,4 @@ initHeaderCondense();
 initVideoCards();
 initCounters();
 initEnrollForm();
+initScrub();
