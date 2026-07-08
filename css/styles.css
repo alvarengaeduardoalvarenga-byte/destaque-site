@@ -297,3 +297,11 @@ body:not(.has-traj) .traj-node { opacity: 1; transform: translate(-50%, -50%) sc
   .traj-card { width: calc(100% - 64px); }
   .traj-node, .traj-item[data-side="left"] .traj-node, .traj-item[data-side="right"] .traj-node { left: 24px; }
 }
+
+/* Cards da trajetória maiores no desktop (mobile permanece) */
+@media (min-width: 701px) {
+  .traj-card { width: min(44%, 470px); padding: var(--s-4); }
+  .traj-card h3 { font-size: 1.35rem; }
+  .traj-card p { font-size: 1.02rem; }
+  .traj-ic { font-size: 2rem; }
+}
