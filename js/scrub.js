@@ -49,6 +49,8 @@ export function initScrub() {
     const p = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
     const idx = Math.min(FRAME_COUNT - 1, Math.floor(p * (FRAME_COUNT - 1)));
     if (idx !== lastFrame && draw(idx)) lastFrame = idx;
+    // entrada sem costura: o vídeo surge em fade sobre o céu estrelado real do site
+    canvas.style.opacity = Math.min(1, p / 0.06);
     const fp = Math.min(Math.max((p - 0.78) / 0.17, 0), 1);
     form.style.opacity = fp;
     form.style.transform = `translateY(${(1 - fp) * 40}px)`;
