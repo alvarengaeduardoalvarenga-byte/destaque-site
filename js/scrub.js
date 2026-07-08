@@ -42,6 +42,7 @@ export function initScrub() {
 
   const form = section.querySelector('.scrub-form');
   const hint = section.querySelector('.scrub-hint');
+  const caption = section.querySelector('.scrub-caption');
   const tick = () => {
     const rect = section.getBoundingClientRect();
     const total = rect.height - window.innerHeight;
@@ -52,6 +53,12 @@ export function initScrub() {
     form.style.opacity = fp;
     form.style.transform = `translateY(${(1 - fp) * 40}px)`;
     form.style.pointerEvents = fp > 0.5 ? 'auto' : 'none';
+    if (caption) {
+      // legenda nasce junto com o amanhecer, no centro, acima do portal azul
+      const cp = Math.min(Math.max((p - 0.5) / 0.15, 0), 1);
+      caption.style.opacity = cp;
+      caption.style.transform = `translateX(-50%) translateY(${(1 - cp) * 20}px)`;
+    }
     if (hint) hint.style.opacity = p < 0.05 ? '1' : '0';
     requestAnimationFrame(tick);
   };
