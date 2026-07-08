@@ -238,8 +238,8 @@ body.has-scrub .scrub-poster { display: none; }
   color: #fff; font-weight: 600; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase;
   background: rgba(13,27,76,.5); padding: .5rem 1.1rem; border-radius: 999px; backdrop-filter: blur(6px);
   transition: opacity .5s ease; pointer-events: none; }
-.scrub-form { position: absolute; inset: 0; display: flex; align-items: center;
-  justify-content: flex-end; padding: var(--s-3) clamp(1rem, 6vw, 6rem) var(--s-3) var(--s-3); }
+.scrub-form { position: absolute; inset: 0; display: flex; align-items: flex-start;
+  justify-content: flex-end; padding: clamp(5rem, 13vh, 9rem) clamp(1rem, 6vw, 6rem) var(--s-3) var(--s-3); }
 body.has-scrub .scrub-form { opacity: 0; pointer-events: none; }
 .scrub-form form { width: min(100%, 460px); }
 .scrub-form #enroll-form { background: rgba(255,255,255,.94); backdrop-filter: blur(10px);
@@ -248,7 +248,7 @@ body.has-scrub .scrub-form { opacity: 0; pointer-events: none; }
 .scrub-form .eyebrow { margin-bottom: .1rem; }
 .scrub-form-title { font-size: clamp(1.4rem, 2.2vw, 1.8rem); margin: 0; }
 .scrub-form-sub { color: var(--muted); margin: 0 0 .5rem; font-size: .95rem; }
-@media (max-width: 860px) { .scrub-form { justify-content: center; padding: var(--s-3); } }
+@media (max-width: 860px) { .scrub-form { justify-content: center; align-items: center; padding: var(--s-3); } }
 @media (prefers-reduced-motion: reduce) {
   .scrub-section { height: auto; }
   .scrub-sticky { position: relative; height: 100vh; }
