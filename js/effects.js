@@ -45,6 +45,10 @@ export function initSmoothScroll() {
       // origin directly instead of asking Lenis to resolve its (unreliable) offset.
       if (href === '#top') {
         lenis.scrollTo(0);
+      } else if (href === '#form') {
+        // a seção de matrícula é um scrub de 420vh: o formulário só aparece no FIM
+        // da rolagem — aterrissar direto lá (p = 1), não no início do vídeo
+        lenis.scrollTo(el.offsetTop + el.offsetHeight - window.innerHeight);
       } else {
         lenis.scrollTo(el, { offset: -84 });
       }
