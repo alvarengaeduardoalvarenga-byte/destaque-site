@@ -10,7 +10,6 @@ Abrir http://localhost:8092
     node scripts/optimize-images.mjs
 
 ## Pendências do cliente
-- Número de WhatsApp de destino (buscar `WHATSAPP_NUMBER` em js/whatsapp.js)
 - Links dos vídeos de depoimento (buscar `VIDEO_PLACEHOLDER` em index.html)
 - ~~Logos oficiais~~ ✔ aplicadas (assets/logos/destaque-branca.png + destaque-horizontal.png; originais em assets/logos/originals/)
 - URL do Portal do Aluno (buscar 'Portal do Aluno' em index.html; restaurar target="_blank" ao inserir a URL real)

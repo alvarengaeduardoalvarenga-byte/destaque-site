@@ -8,7 +8,7 @@ export function buildWhatsappUrl({ number, nome, telefone, serie }) {
 }
 
 // Número de destino — PENDÊNCIA do cliente. Placeholder até chegar.
-export const WHATSAPP_NUMBER = '5575000000000';
+export const WHATSAPP_NUMBER = '5575998007676';
 
 // PENDÊNCIA do cliente: URL do webhook do CRM (ex.: RD Station, Zapier, Make).
 // Vazio = envio ao CRM desligado; o WhatsApp continua funcionando normalmente.

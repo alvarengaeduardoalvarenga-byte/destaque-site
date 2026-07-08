@@ -11,12 +11,19 @@ export function initScrub() {
 
   const ctx = canvas.getContext('2d');
   const imgs = new Array(FRAME_COUNT);
-  for (let i = 0; i < FRAME_COUNT; i++) {
-    const im = new Image();
-    im.src = framePath(i);
-    if (i === 0) im.onload = () => { lastFrame = -1; };
-    imgs[i] = im;
-  }
+  // preload adiado: os ~15MB de frames só baixam quando o visitante se
+  // aproxima da seção (2.5 telas antes), sem disputar o carregamento inicial
+  let preloadStarted = false;
+  const preload = () => {
+    if (preloadStarted) return;
+    preloadStarted = true;
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const im = new Image();
+      im.src = framePath(i);
+      if (i === 0) im.onload = () => { lastFrame = -1; };
+      imgs[i] = im;
+    }
+  };
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   let lastFrame = -1;
@@ -45,6 +52,7 @@ export function initScrub() {
   const caption = section.querySelector('.scrub-caption');
   const tick = () => {
     const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 2.5) preload();
     const total = rect.height - window.innerHeight;
     const p = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
     const idx = Math.min(FRAME_COUNT - 1, Math.floor(p * (FRAME_COUNT - 1)));
