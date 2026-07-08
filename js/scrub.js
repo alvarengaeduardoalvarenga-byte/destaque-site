@@ -49,9 +49,10 @@ export function initScrub() {
     const p = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
     const idx = Math.min(FRAME_COUNT - 1, Math.floor(p * (FRAME_COUNT - 1)));
     if (idx !== lastFrame && draw(idx)) lastFrame = idx;
-    // entrada sem costura: o vídeo se materializa sobre o céu estrelado real do site,
-    // do primeiro pixel de scroll até 15%, com easing (sem "pop")
-    const e = Math.min(1, p / 0.15);
+    // entrada sem costura: a fachada se materializa ENQUANTO a seção se aproxima
+    // (antes de colar na tela), completando pouco antes do pin — sem tela vazia, sem pop
+    const entry = Math.min(Math.max(1 - rect.top / window.innerHeight, 0), 1);
+    const e = Math.min(1, entry / 0.85);
     canvas.style.opacity = e * e * (3 - 2 * e);
     const fp = Math.min(Math.max((p - 0.78) / 0.17, 0), 1);
     form.style.opacity = fp;
