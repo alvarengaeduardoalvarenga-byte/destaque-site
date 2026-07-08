@@ -258,7 +258,7 @@ body:not(.has-scrub) .scrub-caption { opacity: 1; }
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 82%, transparent 100%);
   mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 82%, transparent 100%); }
 .traj-title { font-size: clamp(1.8rem, 3.6vw, 3rem); color: #fff; text-align: center; line-height: 1.25;
-  text-shadow: 0 2px 30px rgba(4,8,25,.6); max-width: 20ch; }
+  text-shadow: 0 2px 30px rgba(4,8,25,.6); max-width: 34ch; }
 .traj-title em { font-style: normal; color: #2EE6A8; }
 .traj-wrap { position: relative; width: min(100% - 2.5rem, 1080px); margin-inline: auto; }
 .traj-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
