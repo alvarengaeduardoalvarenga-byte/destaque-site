@@ -12,5 +12,5 @@ Abrir http://localhost:8092
 ## Pendências do cliente
 - Links dos vídeos de depoimento (buscar `VIDEO_PLACEHOLDER` em index.html)
 - ~~Logos oficiais~~ ✔ aplicadas (assets/logos/destaque-branca.png + destaque-horizontal.png; originais em assets/logos/originals/)
-- URL do Portal do Aluno (buscar 'Portal do Aluno' em index.html; restaurar target="_blank" ao inserir a URL real)
+- Portal da família: `https://sejadestaque.com/rematricula/`, disponível no cabeçalho e no menu em telas menores. A página `rematricula/index.html` redireciona para o portal real de 2027, com acesso alternativo por botão.
 - URL do webhook do CRM para receber os leads do formulário (CRM_WEBHOOK_URL em js/whatsapp.js)
